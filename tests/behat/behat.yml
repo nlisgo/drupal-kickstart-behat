@@ -11,7 +11,9 @@ default:
           password: 'admin'
       default_browser: 'goutte'
   extensions:
+  extensions:
     Behat\MinkExtension\Extension:
+      base_url: 'http://127.0.0.1:80'
       goutte: ~
       selenium2: ~
       default_session: 'goutte'
