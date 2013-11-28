@@ -22,6 +22,11 @@ install:
   # Run composer
   - cd ./tests/behat
   - composer install
+  
+  # Setup Behat
+  - cp behat.local.yml.example behat.local.yml
+  
+  # Going back
   - cd ../../
 
 before_script:

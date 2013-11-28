@@ -21,7 +21,5 @@ default:
       drush: ~
 
 imports:
-  - config/sauce.yml
-  #- config/jira.yml
   - behat.local.yml
 
