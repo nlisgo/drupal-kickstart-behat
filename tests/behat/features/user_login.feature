@@ -27,7 +27,7 @@ Feature: Login Commerce Kickstart
     | mail@mail.com  |
 
   Scenario: Login and as admin and view user profile
-    Given I am logged in as "admin"
+    Given I am logged in as "admin user"
     And I go to "/user"
     Then I should see "HELLO, ADMIN"
     And I should see the following <links>
