@@ -48,7 +48,7 @@ before_script:
   # Run the drush built in webserver.
   - sudo chmod u+x /home/travis/.phpenv/shims/drush
   - sudo ln -s /home/travis/.phpenv/shims/drush /usr/bin/drush
-  - sudo drush --root=$PWD/kickstart runserver --server=builtin 80 &
+  - sudo drush --root=$PWD/kickstart runserver --server=builtin 8888 &
   - sleep 5s # give Web server some time to bind to sockets, etc
 
   # Get Selenium
