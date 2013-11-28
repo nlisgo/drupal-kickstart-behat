@@ -1,24 +1,12 @@
 {
-    "require": {
-        "behat/behat": "2.4.*@stable",
-        "behat/mink": "1.4@stable",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "behat/mink-sahi-driver": "*",
-        "behat/mink-zombie-driver": "*",
-        "drupal/drupal-extension": "*",
-        "symfony/process": "*",
-        "behat/symfony2-extension": "*",
-        "symfony/form": "*",
-        "symfony/validator": "*",
-        "behat/mink-extension": "*",
-        "symfony/http-kernel": "*",
-        "fabpot/goutte": "dev-master#5f7fd00",
-        "sauce/connect": "*",
-        "sauce/sausage": "*",
-        "vipsoft/jira-extension": "*"
-    },
+  "require": {
+    "behat/mink": ">=1.4.0, <1.5.0",
+    "behat/mink-goutte-driver": "dev-master#fa1b073",
+    "behat/mink-selenium2-driver": "1.0.6",
+    "behat/behat": ">=2.4.3, <2.5.0",
+    "behat/mink-extension": "1.1.4",
+    "drupal/drupal-extension": "dev-master#8f52225"
+  },
     "minimum-stability": "dev",
     "config": {
       "bin-dir": "bin/"
