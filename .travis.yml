@@ -3,11 +3,6 @@ language: php
 php:
   - 5.4
 
-env:
-  global:
-    - secure: "FZJA/WJSKeVfJPafI6Yco6+66Oa7ezt7WQ80ggPuW9psQttQhG6IiQ0WdNgT\nYe0oitrRN62UBcnY1W1H2R0hqT0G8chmBP076AZ0UJ/aUdl1ZTmDiSs/YWz6\nb3q3JryoMdP8MNJNPi6qVRkhGK8D1iapcN8aicoRKL1+xwTja5s="
-    - secure: "EIxZfB0V0kn2CZ+0Qc4guqE2LwXYFOZHDM0720wVwi8FOKBYT6xQP+hBodrQ\nzJqhLW+SiexomCv5fUgX0oyjbcoxKJj19SSb76cVy5RAzqdg/agMpMNTQpI9\nXjnBV6Tt9edBNOxP08QxGRJRIekd1amDKCq0fisdxfIWSGvHENc="
-
 mysql:
   database: drupal
   username: root
@@ -51,28 +46,13 @@ before_script:
   - sudo drush --root=$PWD/kickstart runserver --server=builtin 80 &
   - sleep 5s # give Web server some time to bind to sockets, etc
 
-  # Run selenium
-  #- wget http://selenium.googlecode.com/files/selenium-server-standalone-2.25.0.jar
-  #- java -jar selenium-server-standalone-2.25.0.jar -p 4444 > /dev/null 2>&1 &
-  #- sleep 5s
+  # Get Selenium
+  - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.33.0.jar
+  - java -jar selenium-server-standalone-2.33.0.jar > /dev/null 2>&1 &
+  - sleep 5
 
 script:
-  - cd tests/behat
-
-  # Set env variable for behat params.
-  - export BEHAT_PARAMS="extensions[Behat\MinkExtension\Extension][selenium2][wd_host]=$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com/wd/hub"
-
-  # Setup sauce tunnel in the background and give it time to launch.
-  #- java -jar vendor/sauce/connect/lib/Sauce-Connect.jar -P 4445 $SAUCE_USERNAME $SAUCE_ACCESS_KEY --fast-fail-regexps "google.com,saucelabs.com,twitter.com, gstatic.com" > /dev/null 2>&1 &
-  - java -jar vendor/sauce/connect/lib/Sauce-Connect.jar -P 4445 $SAUCE_USERNAME $SAUCE_ACCESS_KEY > /dev/null 2>&1 &
-
-  #- java -jar vendor/sauce/connect/lib/Sauce-Connect.jar -P 4445 $SAUCE_USERNAME $SAUCE_ACCESS_KEY --fast-fail-regexps "google.com,saucelabs.com,twitter.com, gstatic.com" 2&>1 /dev/null
-  - sleep 45s
 
   # Run behat tests
-  #- ./bin/behat --no-paths
-  - ./bin/behat -p Firefox-19 --no-paths
-
-  # Shut down the sauce tunnel
-  - kill $(ps aux | grep "Sauce-Connect" | grep -v 'grep' | awk '{print $2}')
+  - ./bin/behat --no-paths
 
