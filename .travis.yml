@@ -60,5 +60,5 @@ script:
 
   # Run behat tests
   - cd tests/behat
-- ./bin/behat --no-paths
+  - ./bin/behat --no-paths
 
