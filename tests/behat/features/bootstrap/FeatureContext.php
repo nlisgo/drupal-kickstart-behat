@@ -39,6 +39,10 @@ class FeatureContext extends DrupalContext {
       $this->drupal_users = $parameters['drupal_users'];
     }
   }
+  
+  protected function randomString($number = 10) {
+    return 'abcdefghijk';
+  }
 
   /**
    * @Given /^I (?:should |)see the following <links>$/
