@@ -188,18 +188,6 @@ class FeatureContext extends DrupalContext {
   }
 
   /**
-   * Authenticates a user with password from configuration.                                                ]
-   *
-   * @Given /^I am logged in as "([^"]*)"$/
-   */
-  public function iAmLoggedInAs($username) {
-    $details = $this->fetchUserDetails('drupal', $username);
-    $username = $details['username'];
-    $password = $details['password'];
-    $this->iAmLoggedInAsWithThePassword($username, $password);
-  }
-
-  /**
    * Private function for the whoami step.
    */
   private function whoami() {
