@@ -61,5 +61,5 @@ before_script:
 script:
 
   # Run behat tests
-  - ./bin/behat --no-paths
+  - ./bin/behat
 
