@@ -59,5 +59,6 @@ before_script:
 script:
 
   # Run behat tests
-  - ./bin/behat --no-paths
+  - cd tests/behat
+- ./bin/behat --no-paths
 
