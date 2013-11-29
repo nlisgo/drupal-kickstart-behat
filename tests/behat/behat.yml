@@ -7,8 +7,7 @@ default:
     parameters:
       drupal_users:
         admin user:
-          username: 'admin'
-          password: 'admin'
+          'admin'
       default_browser: 'goutte'
   extensions:
   extensions:
