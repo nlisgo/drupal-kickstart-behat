@@ -26,6 +26,7 @@ Feature: Login Commerce Kickstart
     | 123453         |
     | mail@mail.com  |
 
+  @api
   Scenario: Login and as admin and view user profile
     Given I am logged in as "admin user"
     And I go to "/user"
