@@ -18,8 +18,7 @@ default:
     Drupal\DrupalExtension\Extension:
       blackbox: ~
       drush: ~
-      drupal: ~
-      api_driver: 'drupal'
+      api_driver: 'drush'
 
 imports:
   - behat.local.yml
