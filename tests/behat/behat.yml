@@ -18,6 +18,7 @@ default:
     Drupal\DrupalExtension\Extension:
       blackbox: ~
       drush: ~
+      drupal: ~
       api_driver: 'drupal'
 
 imports:
