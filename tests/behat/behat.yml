@@ -10,7 +10,6 @@ default:
           'admin'
       default_browser: 'goutte'
   extensions:
-  extensions:
     Behat\MinkExtension\Extension:
       goutte: ~
       selenium2: ~
@@ -19,6 +18,7 @@ default:
     Drupal\DrupalExtension\Extension:
       blackbox: ~
       drush: ~
+      api_driver: 'drupal'
 
 imports:
   - behat.local.yml
