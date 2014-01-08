@@ -28,7 +28,7 @@ Feature: Login Commerce Kickstart
 
   @api
   Scenario: Login and as admin and view user profile
-    When I am logged in as "admin user"
+    Given I am logged in as a user with the "administrator" role
     And I go to "/user"
     Then I should see "HELLO, ADMIN"
     And I should see the following <links>
