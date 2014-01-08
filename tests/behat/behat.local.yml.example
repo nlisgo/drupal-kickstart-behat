@@ -3,5 +3,7 @@ default:
     Behat\MinkExtension\Extension:
       base_url: 'http://127.0.0.1:8888'
     Drupal\DrupalExtension\Extension:
+      blackbox: ~
+      api_driver: 'drush'
       drush:
-        alias: self
+        alias: 'kickstart.local'
