@@ -10,6 +10,7 @@
 use Behat\Behat\Exception\PendingException,
   Behat\Gherkin\Node\TableNode;
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\Component\Utility\Random;
 use Symfony\Component\Process\Process;
 
 use Behat\Behat\Context\Step\Given;
@@ -100,7 +101,7 @@ class FeatureContext extends DrupalContext {
    */
   public function iFillInWithRandomText($label) {
     // A @Tranform would be more elegant.
-    $randomString = $this->randomString(10);
+    $randomString = Random::name(10);
 
     $step = "I fill in \"$label\" with \"$randomString\"";
     return new Then($step);
