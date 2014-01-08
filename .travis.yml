@@ -19,13 +19,22 @@ install:
   - pear install drush/drush
   - phpenv rehash
 
+  # Prepare drush alias
+  - mkdir -p /home/travis/.drush
+  - touch /home/travis/.drush/kickstart.aliases.drushrc.php
+  - echo "<?php" >> /home/travis/.drush/kickstart.aliases.drushrc.php
+  - echo "\$aliases['kickstart.local'] = array(" >> /home/travis/.drush/kickstart.aliases.drushrc.php
+  - echo "  'root' => '$PWD/kickstart'," >> /home/travis/.drush/kickstart.aliases.drushrc.php
+  - echo "  'uri'  =>  '127.0.0.1:8888'" >> /home/travis/.drush/kickstart.aliases.drushrc.php
+  - echo ");" >> /home/travis/.drush/kickstart.aliases.drushrc.php
+
   # Run composer
   - cd ./tests/behat
   - composer install
-  
+
   # Setup Behat
   - cp behat.local.yml.example behat.local.yml
-  
+
   # Going back
   - cd ../../
 
