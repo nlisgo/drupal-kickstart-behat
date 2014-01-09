@@ -4,6 +4,5 @@ default:
       base_url: 'http://127.0.0.1:8888'
     Drupal\DrupalExtension\Extension:
       blackbox: ~
-      api_driver: 'drupal'
       drupal:
         drupal_root: '/path/to/kickstart'
