@@ -24,3 +24,14 @@ Feature: Add drinking item to cart
     When I go to "/drinks/drupal-commerce-wake-you"
     And I press "Add to cart"
     Then I should see "ITEM SUCCESSFULLY ADDED TO YOUR CART"
+
+  @javascript
+  Scenario: Read more reveals more text
+    When I go to "/drinks/drupal-commerce-wake-you"
+    Then I should not see "ut lacus"
+
+  @javascript
+  Scenario: Read more reveals more text
+    When I go to "/drinks/drupal-commerce-wake-you"
+    And I follow "read more"
+    Then I should see "ut lacus"
