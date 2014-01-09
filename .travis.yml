@@ -12,7 +12,7 @@ install:
 
   # Create MySQL Database
   - mysql -e 'create database drupal;'
-  - sudo apt-get --quiet=2 install php5-cli php5-cgi php5-curl php5-gd php5-mysql > /dev/null
+  - sudo apt-get --quiet=2 install apache2 libapache2-mod-php5 php5-cli php5-cgi php5-curl php5-gd php5-mysql > /dev/null
 
   # Install Drush
   - pear channel-discover pear.drush.org
