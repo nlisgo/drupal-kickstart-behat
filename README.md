@@ -24,24 +24,32 @@ with Behat/Mink testing using Travis CI (https://travis-ci.org)
 
     # Install Drupal
     cd www
-    drush si commerce_kickstart --sites-subdir=default --db-url=mysql://USERNAME:PASSWORD@localhost/DB_NAME --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="Commerce Kickstart Profile" --yes
+    drush si commerce_kickstart --sites-subdir=default --db-url=mysql://USERNAME:PASSWORD@127.0.0.1/DB_NAME --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="Commerce Kickstart Profile" --yes
 
-    # Start webserver
+    # Start webserver - in another terminal window from the Drupal root folder (public_html/www)
     drush rs 8888
 
-    # Install testing tools
-    cd ../../tests/behat
+    # Install testing tools - go back to the previous terminal window
+    cd ../tests/behat
     curl -s http://getcomposer.org/installer | php
     php composer.phar install
 
 ##### Configure Behat
-Modify `/tests/behat/behat.yml`
-Set `base_url` to your local host
 
-Copy `behat.local.yml.example` to `behat.local.yml` and set the drupal_root to the full path of the Drupal root
+Copy `behat.local.yml.example` to `behat.local.yml` and edit `behat.local.yml` by setting the drupal_root to the full path of the Drupal root
 
 To run tests
 
     # Run tests
-    cd /tests/behat
+    ./bin/behat
+
+To run tests with javascript using selenium server
+
+    # Download selenium standalone server
+    curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+
+    # Run selenium - in another terminal window from the behat folder (public_html/tests/behat)
+    java -jar selenium-server-standalone-2.39.0.jar
+
+    # Run tests - go back to the previous terminal window
     ./bin/behat
