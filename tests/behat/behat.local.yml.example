@@ -7,3 +7,5 @@ default:
       api_driver: 'drush'
       drush:
         alias: 'kickstart.local'
+      drupal:
+        drupal_root: '/path/to/kickstart'
