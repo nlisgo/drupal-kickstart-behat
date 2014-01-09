@@ -53,3 +53,15 @@ To run tests with javascript using selenium server
 
     # Run tests - go back to the previous terminal window
     ./bin/behat
+
+##### Setup Travis CI
+
+Fork this project on github to your personal account.
+
+Setup your Travis CI account by logging in to http://travis-ci.org with you github credentials.
+
+Switch on the repository from with in Travis CI.
+
+[![Travis-CI Setup](http://img.youtube.com/vi/YxJJu6mShiA/0.jpg)](http://www.youtube.com/watch?v=YxJJu6mShiA)
+
+To start a Travis CI build either push a change to your github repo or navigate to the service hooks page on your github repo and find the Travis hook and click the 'Test Hook' button.
