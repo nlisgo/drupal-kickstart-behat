@@ -30,7 +30,7 @@ Feature: Login Commerce Kickstart
   Scenario: Login and as admin and view user profile
     Given I am logged in as a user with the "administrator" role
     And I go to "/user"
-    Then I should see "HELLO, ADMIN"
+    Then I should see "HELLO, "
     And I should see the following <links>
       | links                 |
       | My account            |
