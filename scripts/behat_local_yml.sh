@@ -8,4 +8,4 @@ sudo echo "default:
     Drupal\DrupalExtension\Extension:
       blackbox: ~
       drupal:
-        drupal_root: '${pwd}/kickstart'" | sudo tee "$(pwd)/tests/behat/behat.local.yml" > /dev/null
+        drupal_root: '$(pwd)/kickstart'" | sudo tee "$(pwd)/tests/behat/behat.local.yml" > /dev/null
