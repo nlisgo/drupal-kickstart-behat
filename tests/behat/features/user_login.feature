@@ -39,7 +39,7 @@ Feature: Login Commerce Kickstart
       | Connections           |
       | Order history         |
 
-  @api
+  @api @javascript
   Scenario: Create users
     Given users:
     | name     | mail            | status |
