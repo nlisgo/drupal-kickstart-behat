@@ -5,9 +5,6 @@ default:
     bootstrap: 'features/bootstrap'
   context:
     parameters:
-      drupal_users:
-        admin user:
-          'admin'
       default_browser: 'goutte'
   extensions:
     Behat\MinkExtension\Extension:
@@ -17,7 +14,6 @@ default:
       javascript_session: 'selenium2'
     Drupal\DrupalExtension\Extension:
       blackbox: ~
-      drush: ~
       api_driver: 'drupal'
 
 imports:
