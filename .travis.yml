@@ -19,15 +19,6 @@ install:
   - pear install drush/drush
   - phpenv rehash
 
-  # Prepare drush alias
-  - mkdir -p /home/travis/.drush
-  - touch /home/travis/.drush/kickstart.aliases.drushrc.php
-  - echo "<?php" >> /home/travis/.drush/kickstart.aliases.drushrc.php
-  - echo "\$aliases['kickstart.local'] = array(" >> /home/travis/.drush/kickstart.aliases.drushrc.php
-  - echo "  'root' => '$PWD/kickstart'," >> /home/travis/.drush/kickstart.aliases.drushrc.php
-  - echo "  'uri'  =>  '127.0.0.1:8888'," >> /home/travis/.drush/kickstart.aliases.drushrc.php
-  - echo ");" >> /home/travis/.drush/kickstart.aliases.drushrc.php
-
   # Prepare behat.local.yml
   - touch ./behat.local.yml
   - echo "default:" >> ./behat.local.yml
@@ -36,8 +27,6 @@ install:
   - echo "      base_url: 'http://127.0.0.1:8888'" >> ./behat.local.yml
   - echo "    Drupal\DrupalExtension\Extension:" >> ./behat.local.yml
   - echo "      blackbox: ~" >> ./behat.local.yml
-  - echo "      drush:" >> ./behat.local.yml
-  - echo "        alias: 'kickstart.local'" >> ./behat.local.yml
   - echo "      drupal:" >> ./behat.local.yml
   - echo "        drupal_root: '$PWD/kickstart'" >> ./behat.local.yml
 
