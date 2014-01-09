@@ -5,7 +5,7 @@ drupal-kickstart-behat
 A sandbox proof of concept for a session at Drupalcamp London (http://2013.drupalcamplondon.co.uk/session/zip-bdd-do-dah-zip-bdd-ay).
 
 Uses the Drupal 7 Commerce Kickstart profile (http://drupal.org/project/commerce_kickstart),
-with Behat/Mink testing using Travis CI (https://travis-ci.org) and Saucelabs (https://saucelabs.com)
+with Behat/Mink testing using Travis CI (https://travis-ci.org)
 
 
 [![Build Status](https://travis-ci.org/nlisgo/drupal-kickstart-behat.png?branch=master)](https://travis-ci.org/nlisgo/drupal-kickstart-behat)
@@ -19,9 +19,16 @@ with Behat/Mink testing using Travis CI (https://travis-ci.org) and Saucelabs (h
     cd public_html
     drush make build-commerce-kickstart.make www
 
+    # Create Drupal database
+    mysql -e 'create database DB_NAME;' -u USERNAME -p PASSWORD
+
     # Install Drupal
     cd www
     drush si commerce_kickstart --sites-subdir=default --db-url=mysql://USERNAME:PASSWORD@localhost/DB_NAME --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="Commerce Kickstart Profile" --yes
+
+    # Start webserver
+    drush rs 8888
+
     # Install testing tools
     cd ../../tests/behat
     curl -s http://getcomposer.org/installer | php
@@ -31,22 +38,7 @@ with Behat/Mink testing using Travis CI (https://travis-ci.org) and Saucelabs (h
 Modify `/tests/behat/behat.yml`
 Set `base_url` to your local host
 
-Edit `behat.local.yml` and set your drush alias for the site you are testing.
-
-If you are using Saucelabs then set
-
-    Behat\MinkExtension\Extension:
-      selenium2:
-          wd_host: SAUCE_USER:API_KEY@ondemand.saucelabs.com/wd/hub
-
-to contain your sauce username and API key.
-
-If you are using the JIRA connector then set
-
-    VIPSoft\JiraExtension\Extension:
-      host: http://YOURJIRAHOST.com/
-
-to contain the path to your JIRA instance.
+Copy `behat.local.yml.example` to `behat.local.yml` and set the drupal_root to the full path of the Drupal root
 
 To run tests
 
