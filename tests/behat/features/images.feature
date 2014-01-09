@@ -5,5 +5,9 @@ Feature: Images arve available
   I should be able to see images
 
   Scenario: Images loading
+    When I go to "/sites/default/files/field/image/slideshow/slideshow-1.jpg"
+    Then I should get a "200" HTTP response
+
+  Scenario: Image caches loading
     When I go to "/sites/default/files/styles/hp_slideshow/public/field/image/slideshow/slideshow-1.jpg"
     Then I should get a "200" HTTP response
