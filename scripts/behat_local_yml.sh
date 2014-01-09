@@ -4,7 +4,7 @@
 sudo echo "default:
   extensions:
     Behat\MinkExtension\Extension:
-      base_url: 'http://127.0.0.1:8888'
+      base_url: 'http://127.0.0.1:80'
     Drupal\DrupalExtension\Extension:
       blackbox: ~
       drupal:

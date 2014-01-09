@@ -7,7 +7,7 @@ WEBROOT="$(pwd)/kickstart"
 CGIROOT=`dirname "$(which php-cgi)"`
 echo "WEBROOT: $WEBROOT"
 echo "CGIROOT: $CGIROOT"
-sudo echo "<VirtualHost *:8888>
+sudo echo "<VirtualHost *:80>
         DocumentRoot $WEBROOT
         <Directory />
                 Options FollowSymLinks
