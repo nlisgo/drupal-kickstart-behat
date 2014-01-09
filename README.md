@@ -8,14 +8,12 @@ Uses the Drupal 7 Commerce Kickstart profile (http://drupal.org/project/commerce
 with Behat/Mink testing using Travis CI (https://travis-ci.org) and Saucelabs (https://saucelabs.com)
 
 
-[![Build Status](https://travis-ci.org/tayzlor/drupal-kickstart-behat.png?branch=master)](https://travis-ci.org/tayzlor/drupal-kickstart-behat)
-
-[![Selenium Test Status](https://saucelabs.com/buildstatus/gtayzlor)](https://saucelabs.com/u/gtayzlor)
+[![Build Status](https://travis-ci.org/nlisgo/drupal-kickstart-behat.png?branch=master)](https://travis-ci.org/nlisgo/drupal-kickstart-behat)
 
 ## Installation
 
     # Clone repo
-    git clone https://github.com/tayzlor/drupal-kickstart-behat.git public_html
+    git clone https://github.com/nlisgo/drupal-kickstart-behat.git public_html
 
     # Create Drupal codebase
     cd public_html
