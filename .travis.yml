@@ -19,16 +19,8 @@ install:
   - pear install drush/drush
   - phpenv rehash
 
-  # Prepare behat.local.yml
-  - touch ./tests/behat/behat.local.yml
-  - echo "default:" >> ./tests/behat/behat.local.yml
-  - echo "  extensions:" >> ./tests/behat/behat.local.yml
-  - echo "    Behat\MinkExtension\Extension:" >> ./tests/behat/behat.local.yml
-  - echo "      base_url: http://127.0.0.1:8888" >> ./tests/behat/behat.local.yml
-  - echo "    Drupal\DrupalExtension\Extension:" >> ./tests/behat/behat.local.yml
-  - echo "      blackbox: ~" >> ./tests/behat/behat.local.yml
-  - echo "      drupal:" >> ./tests/behat/behat.local.yml
-  - echo "        drupal_root: $PWD/kickstart" >> ./tests/behat/behat.local.yml
+  # Prepare ./tests/behat/behat.local.yml
+  - ./scripts/behat_local_yml.sh
 
   # Run composer
   - cd ./tests/behat
