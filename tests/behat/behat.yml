@@ -17,5 +17,6 @@ default:
       api_driver: 'drupal'
 
 imports:
+  - config/sauce.yml
   - behat.local.yml
 

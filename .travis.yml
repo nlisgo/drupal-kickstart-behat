@@ -3,6 +3,11 @@ language: php
 php:
   - 5.4
 
+env:
+  global:
+    - secure: "W1jZcata0Foo3Sb5o7+Wlaf45SDoJLLFzxCqCgOL7ddv8POeWjQufebvAyl8d7fRKLRPWVdaYL2zONPfn57au6QyR1aCeypLAHpE52UyK5+dVHRbPvPnENIATb9UPjiWTSO4FCcGZmt7ixPZgJsWZirWPCnADcx5nHkgpgnrYT8="
+    - secure: "ib/Xx3JBvx7xvMMBLqPq5jIErgBEQHix3tQk9l/7NCVtJ5gRkFhsGzHzSSzX41bHCQVSIIyZTePElsaqHJplTuuDO804UGFQMXEtzB/5kasyPOIsgfM15NWMN4rJb+wu/dsQPHJ7IbQafY8zICHqNbbvX6TGrSZ2EGxw/+B+3J0="
+
 mysql:
   database: drupal
   username: root
@@ -50,14 +55,26 @@ before_script:
   - sleep 5s
 
   # Get Selenium
-  - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
-  - java -jar selenium-server-standalone-2.39.0.jar > /dev/null 2>&1 &
-  - sleep 5
+  #- wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+  #- java -jar selenium-server-standalone-2.39.0.jar > /dev/null 2>&1 &
+  #- sleep 5
 
   - cd tests/behat
 
 script:
 
-  # Run behat tests
-  - ./bin/behat
 
+  # Set env variable for behat params.
+  - export BEHAT_PARAMS="extensions[Behat\MinkExtension\Extension][selenium2][wd_host]=$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com/wd/hub"
+
+  # Setup sauce tunnel in the background and give it time to launch.
+  - java -jar vendor/sauce/connect/lib/Sauce-Connect.jar -P 4445 $SAUCE_USERNAME $SAUCE_ACCESS_KEY > /dev/null 2>&1 &
+  - sleep 45
+
+  # Run behat tests
+  #- ./bin/behat --no-paths
+  - ./bin/behat -p Firefox-19 --no-paths
+
+  # Shut down the sauce tunnel
+  - kill $(ps aux | grep "Sauce-Connect" | grep -v 'grep' | awk '{print $2}')
+  - cd ../../
