@@ -39,8 +39,9 @@ before_script:
   # Install Kickstart Profile
   - drush make --prepare-install build-commerce-kickstart.make kickstart --yes
   - cd kickstart
-  - sudo chmod -R 777 sites/all/
-  - sudo chmod -R 777 sites/default/files/
+  - sudo chmod -R 777 sites/all
+  - sudo chmod 755 sites/default
+  - sudo chmod -R 777 sites/default/files
   - php -d sendmail_path=`which true` `pear config-get php_dir`/drush/drush.php  si commerce_kickstart --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="Commerce Kickstart Profile" --yes
   - drush cc all --yes
   - cd ../
