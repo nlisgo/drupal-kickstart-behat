@@ -5,8 +5,10 @@
 # Configure Apache
 WEBROOT="$(pwd)/kickstart"
 CGIROOT=`dirname "$(which php-cgi)"`
+LOGROOT="$(pwd)/logs"
 echo "WEBROOT: $WEBROOT"
 echo "CGIROOT: $CGIROOT"
+echo "LOGROOT: $LOGROOT"
 sudo echo "<VirtualHost *:80>
         DocumentRoot $WEBROOT
         <Directory />
@@ -25,6 +27,13 @@ sudo echo "<VirtualHost *:80>
     DirectoryIndex index.php index.html
     AddType application/x-httpd-php5 .php
     Action application/x-httpd-php5 '/local-bin/php-cgi'
+
+    ErrorLog $LOGROOT/apache.error.log
+    CustomLog $LOGROOT/apache.access.log common
+    php_flag log_errors on
+    php_flag display_errors on
+    php_value error_reporting 30719
+    php_value error_log $LOGROOT/php.error.log
 
 </VirtualHost>" | sudo tee /etc/apache2/sites-available/default > /dev/null
 cat /etc/apache2/sites-available/default
