@@ -4,6 +4,15 @@ Feature: Add drinking item to cart
   As any user
   I should be able to add a coffee mug to my cart
 
+  Scenario Outline: Check images styles are working
+    When I go to "<image>"
+    Then the response status code should be 200
+
+    Examples:
+      | image |
+      | /sites/default/files/styles/hp_slideshow/public/field/image/slideshow/slideshow-1.jpg |
+      | /sites/default/files/styles/hp_slideshow/public/field/image/slideshow/slideshow-2.jpg |
+
   Scenario: View the drinking options text and links on the page
     Given I am on the homepage
     When I follow "To drink with"
