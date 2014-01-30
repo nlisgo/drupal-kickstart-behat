@@ -44,6 +44,7 @@ before_script:
 
   # Start the web server
   - mkdir logs
+  - sudo chmod 777 logs
   - ./scripts/apache_server.sh
   - sleep 5s
 
