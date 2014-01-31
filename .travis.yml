@@ -66,7 +66,7 @@ script:
   - ./bin/behat
 
   # Output error and access logs
-  - cd ../../..
+  - cd ../..
   - cat ./logs/php.error.log || true
   - cat ./logs/apache.error.log || true
   - cat ./logs/apache.access.log || true
