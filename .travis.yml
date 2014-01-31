@@ -19,11 +19,6 @@ install:
   - pear install drush/drush
   - phpenv rehash
 
-  # Prepare ./tests/behat/behat.local.yml
-  - sudo cp -f build/travis-ci-behat-yml tests/behat/behat.local.yml
-  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/kickstart?g" --in-place tests/behat/behat.local.yml
-  - cat tests/behat/behat.local.yml
-
   # Run composer
   - cd ./tests/behat
   - composer install
@@ -67,6 +62,11 @@ before_script:
   - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
   - java -jar selenium-server-standalone-2.39.0.jar > /dev/null 2>&1 &
   - sleep 5
+
+  # Prepare tests/behat/behat.local.yml
+  - sudo cp -f ../build/travis-ci-behat-yml tests/behat/behat.local.yml
+  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/kickstart?g" --in-place tests/behat/behat.local.yml
+  - cat tests/behat/behat.local.yml
 
   - cd tests/behat
 
