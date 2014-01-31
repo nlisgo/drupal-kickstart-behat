@@ -9,6 +9,8 @@ mysql:
   encoding: utf8
 
 install:
+  # Additional PHP config
+  - phpenv config-add ./scripts/travis.php.ini
 
   # Create MySQL Database
   - mysql -e 'create database drupal;'
