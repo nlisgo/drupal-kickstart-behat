@@ -14,7 +14,7 @@ install:
 
   # Create MySQL Database
   - mysql -e 'create database drupal;'
-  - sudo apt-get --quiet=2 install apache2 libapache2-mod-php5 php5-cli php5-cgi php5-curl php5-gd php5-mysql > /dev/null
+  - sudo apt-get --quiet=2 install apache2 libapache2-mod-fastcgi libapache2-mod-php5 php5-cli php5-cgi php5-curl php5-gd php5-mysql > /dev/null
 
   # Install Drush
   - pear channel-discover pear.drush.org
@@ -33,6 +33,13 @@ install:
 
 before_script:
 
+
+  # enable php-fpm
+  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
+  - sudo a2enmod rewrite actions fastcgi alias
+  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
+
   # Install Kickstart Profile
   - drush make --prepare-install build-commerce-kickstart.make kickstart --yes
   - cd kickstart
@@ -42,14 +49,13 @@ before_script:
   - ls -l sites/default
   - php -d sendmail_path=`which true` `pear config-get php_dir`/drush/drush.php  si commerce_kickstart --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="Commerce Kickstart Profile" --yes
   - drush cc all --yes
-  - drush vset image_allow_insecure_derivatives TRUE
-  - cd ..
 
-  # Start the web server
-  - mkdir logs
-  - sudo chmod 777 logs
-  - ./scripts/apache_server.sh
+  # configure apache virtual hosts
+  - sudo cp -f build/travis-ci-apache /etc/apache2/sites-available/default
+  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
+  - sudo service apache2 restart
   - sleep 5s
+  - cd ..
 
   # Setup display for selenium
   - export DISPLAY=:99.0
@@ -67,9 +73,3 @@ script:
 
   # Run behat tests
   - ./bin/behat
-
-  # Output error and access logs
-  - cd ../..
-  - cat ./logs/php.error.log || true
-  - cat ./logs/apache.error.log || true
-  - cat ./logs/apache.access.log || true
