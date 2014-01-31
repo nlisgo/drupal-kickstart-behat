@@ -40,6 +40,7 @@ before_script:
   - ls -l sites/default
   - php -d sendmail_path=`which true` `pear config-get php_dir`/drush/drush.php  si commerce_kickstart --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="Commerce Kickstart Profile" --yes
   - drush cc all --yes
+  - drush vset image_allow_insecure_derivatives TRUE
   - cd ..
 
   # Start the web server
