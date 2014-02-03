@@ -51,14 +51,13 @@ before_script:
   - sudo service apache2 restart
   - cat /etc/apache2/sites-available/default
   - sleep 5s
+  - cd ..
 
   # Prepare tests/behat/behat.local.yml
-  - ls -l ../build
-  - sudo cp -f ../build/travis-ci-behat-yml ../tests/behat/behat.local.yml
-  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/kickstart?g" --in-place ../tests/behat/behat.local.yml
-  - cat ../tests/behat/behat.local.yml
+  - sudo cp -f build/travis-ci-behat-yml tests/behat/behat.local.yml
+  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/kickstart?g" --in-place tests/behat/behat.local.yml
+  - cat tests/behat/behat.local.yml
 
-  - cd ..
 
   # Setup display for selenium
   - export DISPLAY=:99.0
