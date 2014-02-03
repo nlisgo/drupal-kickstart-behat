@@ -55,8 +55,8 @@ before_script:
   # Prepare tests/behat/behat.local.yml
   - ls -l ../build
   - sudo cp -f ../build/travis-ci-behat-yml ../tests/behat/behat.local.yml
-  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/kickstart?g" --in-place tests/behat/behat.local.yml
-  - cat tests/behat/behat.local.yml
+  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/kickstart?g" --in-place ../tests/behat/behat.local.yml
+  - cat ../tests/behat/behat.local.yml
 
   - cd ..
 
